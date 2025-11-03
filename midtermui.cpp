@@ -44,6 +44,11 @@ void MidTermUi::handleButtonClick()
     
     QPushButton *clickedButton = qobject_cast<QPushButton*>(sender());
     
+    // Check if sender is valid
+    if (!clickedButton) {
+        return;
+    }
+    
     // Check if button is already used
     if (!clickedButton->text().isEmpty()) {
         return;
@@ -77,7 +82,7 @@ void MidTermUi::handleButtonClick()
 void MidTermUi::checkWinner()
 {
     // Define winning combinations (indices)
-    int winPatterns[8][3] = {
+    static const int winPatterns[8][3] = {
         {0, 1, 2}, // Top row
         {3, 4, 5}, // Middle row
         {6, 7, 8}, // Bottom row
